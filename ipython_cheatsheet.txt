@@ -1,0 +1,44 @@
+Internet Account:
+alexwchen@teksavvy.com
+
+--------------------------------
+Remote login:
+--------------------------------
+ssh raymond@142.150.236.145 MAC
+ssh raymond@142.150.236.135 8 Core Linux
+b4ln4phon3
+
+
+--------------------------------
+iPython Notebook:
+--------------------------------
+Setup Tutorial: 
+http://ipython.org/ipython-doc/dev/interactive/htmlnotebook.html
+
+Config File Path:
+/Users/raymond/.config/ipython/profile_nbserver/
+
+Command:
+ipython notebook --profile=nbserver
+# plot everything within
+ipython notebook --profile=nbserver --pylab inline
+
+Find Python Module Path:
+import a_module
+print a_module.__file__
+
+--------------------------------
+Screen Notes:
+--------------------------------
+Ctrl-A c:    Create Window
+Ctrl-A n:    Jump to Next Window
+Ctrl-A p:    Jump to Previous Window
+Ctrl-A k:    Kill Window
+Ctrl-A d:    Detach from Your Window
+
+screen -ls:     Check out all sessions we have
+screen -r 4768.ttys003.Mac-Pro:      Resume to a session 
+
+
+4776.ttys004.Mac-Pro    10000
+97411.ttys004.Mac-Pro 30000

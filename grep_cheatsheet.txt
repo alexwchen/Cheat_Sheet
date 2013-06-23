@@ -1,0 +1,37 @@
+Grep & Regular Expression (powerful in find and replace)
+
+# find all line that includes the word "include" in tcp.c
+grep include tcp.c 
+
+# find all lines that includes the word "include" in all files in current dir
+grep include ./* (everything accross a lot of files)
+
+
+# more than one word
+grep "hello world" tcp
+
+# \_ denotes the space character
+grep "helo \_ world" 
+
+# . denotes any chracter 
+grep . tcp.c
+
+# . denotes any character, ie saack, sback, scack ...
+grep s.ack tcp.c
+
+# * denotes zero or more 
+# ? denotes one or zero
+# + denotes one or more
+grep "a*" tcp.c
+
+# numbers repeat five times
+grep [0-9]{5} tcp.c
+
+
+# How to use find
+
+find . =name "*" -print | rargs grep " work is here "
+
+
+
+

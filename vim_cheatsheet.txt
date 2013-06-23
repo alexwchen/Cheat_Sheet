@@ -1,0 +1,13 @@
+How to Select X Number of Lines?
+    Press [v] [Number of Lines] [Arrow Key Down]
+
+How to Indent X number of Lines?
+    1. [Ctrl v] and highlight lines
+    2. Press Shift i
+    3. Press Tab
+    4. Press Esc
+
+How to Unindent X number of Lines?
+    1. Select the part you want to delete. Ex. [Ctrl v] Tab
+    2. Type [x] to delete
+        

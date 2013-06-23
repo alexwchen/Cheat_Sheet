@@ -1,0 +1,184 @@
+#links:
+    http://rogerdudler.github.io/git-guide/
+    http://try.github.io/levels/1/challenges/1
+    
+    merge conflict
+    http://git-scm.com/book/en/Customizing-Git-Git-Hooks
+
+#General Command
+
+    git status
+    git add [filename]
+    git commit -m "init project"
+    git rm 
+    git rm --cached [filename]
+
+#Check Where and What Have Been Changed
+
+git diff            # return file modified not in staged 
+git diff --cached   # return file modified in staged
+
+#See Log ( see all the commit )
+
+git log
+
+# Ignore Untracked Files
+    .gitignore
+        *.[oa]      # ignore any files ending in .o or .a
+        *~          # ignore all files that end with a tilde (~)
+        *.a         # no .a files
+        !lib.a      # but do track lib.a, even though you're ignoring .a files above
+        /TODO       # only ignore the root TODO file, not subdir/TODO
+        build/      # ignore all files in the build/ directory
+        doc/*.txt   # ignore doc/notes.txt, but not doc/server/arch.txt
+
+# Downloading Depo
+# Local:
+    git clone file:///Users/alexwchen/Desktop/MyNet hello    
+# SSH:
+    git clone ssh://alexwchen@web328.webfaction.com/home/alexwchen/webapps/portfolio_alex/myproject/
+
+# Branching 
+    git branch      # list all branches
+    git branch -v   # list all branches with last commit log
+    git checkout    # switch working directory to certain branch
+    git merge       # merge a parent branch with its child
+
+    git log --graph # branching visualization
+    gitk            # GUI for visualizing branching
+    git log --graph --full-history --all --color \
+        --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
+
+# Uploading to remote server
+    git push origin master # git push [server name] [branch]
+    git push origin hello
+
+
+# Remote
+    git remote -v #origin   ssh://alexwch...
+
+# How to get to older version of git
+    git log --pretty=oneline
+    git reset --hard [Part of the hash from previous command]
+
+# How to update your git 
+    git fetch git fetch ssh://alexwchen@web328.webfaction.com/home/alexwchen/webapps/portfolio_alex/myproject/rankProj work
+    git merge [whatever it points to]
+
+# How to list all files in your git
+    git ls-tree --name-only master
+
+# Keyboard shortcuts
+    git config --global alias.co checkout
+    git config --global alias.br branch
+    git config --global alias.ci commit
+    git config --global alias.st status
+
+
+# Pushing to github
+    git remote add origin https://github.com/alexwchen/Python_OpenCV_Example_Code.git
+    git push -u origin master
+
+
+
+# Github Tutorial
+    # add all (git add .)
+        You can also type "git add ."
+        The dot represents the current directory, so everything in it, and everything beneath it gets added.
+    # remove file (git reset) (remove from staging)
+    You can use git reset <filename> to remove a file or files from the staging area.
+
+    # add git to github (git remote add origin https://github.com/try-git/try_git.git)
+    git remote add origin https://github.com/try-git/try_git.git
+
+    # push to github (git push -u origin master)
+    The name of our remote is origin and the default local branch name is master. The -u tells Git to remember the parameters, so that next time we can simply run git push and Git will know what to do. Go ahead and push it!
+
+    when you start to get the hang of git you can do some really cool things with hooks when you push.
+
+    For example, you can upload directly to a webserver whenever you push to your master remote instead of having to upload your site with an ftp client. Check out Customizing Git - Git Hooks for more information. ( should check this out sometime )
+
+    git push -u origin master
+
+    # pull from github to see changes (git pull origin master)
+    git pull origin master
+        ex reponse.
+        Updating 3852b4d..3e70b0f
+        Fast-forward
+        yellow_octocat.txt |    1 
+        1 file changed, 1 insertion(+)
+        create mode 100644 yellow_octocat.txt
+
+    # check for version difference  ( git diff HEAD )
+    # --- means missing, +++ means we had extra
+    Let's take a look at what is different from our last commit by using the git diff command.
+    'git diff' gives you a good overview of changes you have made and lets you add files or directories one at a time and commit them separately.
+    ex reponse.
+        diff --git a/octocat.txt b/octocat.txt
+        index 7d8d808..e725ef6 100644
+        --- a/octocat.txt
+        +++ b/octocat.txt
+        @@ -1 +1 @@
+        -A Tale of Two Octocats
+        + Tale of Two Octocats and an Octodog
+    
+    # staged difference (git diff --staged)
+    Good, now go ahead and run git diff with the --staged option to see the changes you just staged. You should see 
+    ex response.
+        diff --git a/octofamily/octodog.txt b/octofamily/octodog.txt
+        new file mode 100644
+        index 0000000..cfbc74a
+        --- /dev/null
+        +++ b/octofamily/octodog.txt
+        @@ -0, 0 +1 @@
+        +[mwoof
+         
+    # check out from last commit (git checkout --blah.txt)
+    Files can be changed back to how they were at the last commit by using the command: git checkout -- <target>. Go ahead and get rid of all the changes since the last commit for octocat.txt
+
+    
+    # branching out (git branch clean_up)
+    git branch clean_up (create a new branch)
+
+    # switching branch (git checkout clean_up)
+    git checkout clean_up
+
+
+    # shrink above two commands together
+            git checkout -b new_branch
+        to checkout and create a branch at the same time. This is the same thing as doing:
+            git branch new_branch
+            git checkout new_branch
+
+    # remove files from git repo (git rm "*.txt")
+            git rm "*.txt"
+            git commit -m "rm all"
+
+    # switching Back to master
+    git checkout clean_up 
+    
+    # before merge 
+    before merging changes, you can also preview them by using
+    git diff <source_branch> <target_branch>
+
+    # merge clean_up
+    Updating 3852b4d..ec6888b
+    Fast-forward
+    blue_octocat.txt             |    1 
+    octocat.txt                  |    1 
+    octofamily/baby_octocat.txt  |    1 
+    octofamily/momma_octocat.txt |    1 
+    red_octocat.txt              |    1 
+    5 files changed, 5 deletions(-)
+    delete mode 100644 blue_octocat.txt
+    delete mode 100644 octocat.txt
+    delete mode 100644 octofamily/baby_octocat.txt
+    delete mode 100644 octofamily/momma_octocat.txt
+    delete mode 100644 red_octocat.txt 
+    
+    # delete branch
+    git branch -d clean_up
+
+    # final push
+    git push
+
