@@ -1,0 +1,82 @@
+###################################################################
+
+[Training]
+
+Gradient Descent - Logistic Loss Function
+
+vw -d train.vw -c -k -f model --loss_function logistic --passes 10
+
+-d train.vw : Specify data file.
+    
+-c file_name : Specify cache file, If didn't specify, Cache file will have default name
+        
+-f model_file : Trained model. model_file contains the trained model para.
+            
+--loss_function logistic : use logistic function as loss function.
+                
+--passes 10 : 10 threads
+
+###################################################################
+
+vw -d train.vw -c -k --readable_model model --loss_function logistic --passes 10
+
+--readable_model model : gives you a readable model output
+
+###################################################################
+
+[Run Test]
+
+-i model: means loads the particular model 
+
+-t : don't use any test data to train
+
+vw -t -d test.vw -i model -p p.txt
+
+###################################################################
+
+[Neural Networks]
+
+--nn number: number means numbers of hidden layer
+
+vw -d data.vw --nn 10
+
+###################################################################
+
+[Feature Expansion]
+
+A basic scenario for one namespace called “n”. You could create quadratic features like this:
+-q nn: nn means 2 sets name space?
+vw -d data.vw -q nn
+
+Cubic features must involve three sets
+vw -d data.vw --cubic nnn
+
+Polynomial features can be combined with a neural network or used separately.
+
+Run with Neural Network
+vw -d train.vw -f model_nn --cubic nnn
+vw -d train.vw -f model_nn -q nn 
+
+###################################################################
+[Regularization]
+vw -d train.vw -k -c -f nn_model --loss_function logistic -b 25 --passes 20 -q ee --l2 0.0000005
+
+-b means modify number of bits to avoid feature collision
+By default it uses 18 bits, so that’s about 262k possible features. If you have more than that, they will collide, meaning that the software won’t be able to distinguish between some of them. Fortunately you can increase a number of bits used for hashing so that you can get millions of features.
+
+--l2 lambda : means l2 with lamdba (ex. 0.005)
+###################################################################
+
+[Auto Script]
+
+print 'Training'
+os.system('vw -d train.vw -f model_nn -q nn > stdout')
+print '------------------'
+print 'Testing'
+os.system('vw -t -d test.vw -i model_nn -p nn_out.txt')
+os.system('python auc.py test.vw nn_out.txt > stdout')
+for line in open('stdout'): print line
+print '------------------'    
+
+
+
