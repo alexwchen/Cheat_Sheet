@@ -67,6 +67,16 @@ By default it uses 18 bits, so that’s about 262k possible features. If you hav
 --l2 lambda : means l2 with lamdba (ex. 0.005)
 ###################################################################
 
+
+-r : specifies the file to output raw predictions.
+that means, 
+-p gives us this kind of output:  4.000000 11768878
+-r gives us this kind of output:  -14.473 2:-13.1566 3:-14.418 4:7.67377 5:-12.0277 11768878
+
+vw --loss_function logistic --oaa 5 -i model -t -d test.vw -r raw_predictions.txt
+
+###################################################################
+
 [Auto Script]
 
 print 'Training'
