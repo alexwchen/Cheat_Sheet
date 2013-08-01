@@ -1,0 +1,16 @@
+How to use virtualenv?
+
+$ mkdir tutorial
+
+$ virtualenv ./tutorial/
+
+New python executable in ./tutorial/bin/python
+Installing setuptools............done.
+Installing pip...............done.
+
+$ source ./tutorial/bin/activate
+
+(tutorial)$
+
+(tutorial)$ pip install -U -r requirements.txt
+
