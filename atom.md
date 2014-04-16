@@ -9,4 +9,4 @@ Markdown Preview
 ----------------
 1. How to trigger preview?
 
-    Ctl+Shift+M
+        Ctl+Shift+M
